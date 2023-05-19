@@ -6,17 +6,11 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <a href="#" class="list-group-item clearfix" *ngFor="let i of recipes">
-            <div class="pull-left">
-                <h4 class="list-group-item-heading">Recipe Name: {{i.name}}</h4>
-                <p class="list-group-item-text"> Descripion: {{i.description}}</p>
-            </div>
-            <span class="pull-right">
-                <!-- or [src] ="i.imagePath" which is property binding-->
-                <img src="{{i.imagePath}}" 
-                 alt="{{i.name}}" class="img-responsive" style="max-height: 50px;">
-            </span>
-        </a>
-        <app-recipe-item></app-recipe-item>
+        <!-- here I replicate single recipe item multiple times -->
+        <app-recipe-item 
+        *ngFor = "let i of recipes"
+        [recipe] = i
+        (recipeSelected)="onRecipeSelected(i)">    
+    </app-recipe-item>
     </div>
 </div>

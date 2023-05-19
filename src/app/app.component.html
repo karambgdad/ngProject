@@ -1,9 +1,11 @@
-<app-header></app-header>
+<app-header 
+(rClickedValue)="onC($event)"
+(sClickedValue)="onR($event)"></app-header>
 <div class="container">
     <div class="row" >
-        <div class="col-md-12"   >
-            <app-recipes></app-recipes>
-            <app-shopping-list></app-shopping-list>
+        <div class="col-md-12">
+            <app-recipes  *ngIf="isRVisible" ></app-recipes>
+            <app-shopping-list *ngIf="isSVisible"></app-shopping-list>
         </div>
     </div>
 </div>

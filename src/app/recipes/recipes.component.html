@@ -1,8 +1,17 @@
 <div class="row">
     <div class="col-md-5">
-        <app-recipe-list></app-recipe-list>
+        <app-recipe-list (recipeWasSelected)="selectedRecipe=$event"></app-recipe-list>
     </div>
     <div class="col-md-7">
-        <app-recipe-detail></app-recipe-detail>
+        <app-recipe-detail
+        *ngIf="selectedRecipe ; else infoText"
+        [recipe] = selectedRecipe>
+        <!-- And keep in mind, this whole component will only be rendered, only be attached to the DOM, if this condition is true, so if selectedRecipe is not undefined. -->
+    </app-recipe-detail>
+        <!-- selectedRecipe if it is undefined it will resolve to false -->
+        <ng-template #infoText>
+            <p>Please select a Recipe</p>
+        </ng-template>
+        <!-- else infoText : then else the content of this infoText should be displayed -->
     </div>
 </div>
