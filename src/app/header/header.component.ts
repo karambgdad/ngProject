@@ -11,11 +11,19 @@ export class HeaderComponent {
     @Output() sClickedValue = new EventEmitter<boolean>();
 
 
-    onRecipeClick() {   
+    onRecipeClick() {
         this.rClickedValue.emit(true);
     }
 
     onShopListClick() {
         this.sClickedValue.emit(true);
-}
+    }
+
+    onManagClick(clicked:boolean){
+        if(clicked){
+            return true
+        }
+       
+
+    }
 }
