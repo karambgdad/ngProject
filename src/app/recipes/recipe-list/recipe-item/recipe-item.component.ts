@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe.service';
 
 
 @Component({
@@ -7,14 +8,20 @@ import { Recipe } from '../../recipe.model';
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.css']
 })
-export class RecipeItemComponent {
-  
-  @Input() recipe: Recipe;
-  @Output() recipeSelected = new EventEmitter<void>();
+export class RecipeItemComponent implements OnInit{
+  @Input() recipe:Recipe;
 
-  onSelected(){
-    this.recipeSelected.emit();
-    console.log(this.recipeSelected)
+constructor(private recipeService: RecipeService ){}
+
+ngOnInit() {
+
   }
-  //here we are only emitting an empty event, this is only to be able to use while a recipe item has been clicked
+
+  onSelect(){
+    this.recipeService.selectedRecipe.emit(this.recipe)
+    this.recipeService.setSelectedRecipe(this.recipe)
+  // console.log(this.recipeService.getSelectedRecipe())
+  }
+
+
 }
