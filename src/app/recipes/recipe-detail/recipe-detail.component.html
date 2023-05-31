@@ -1,7 +1,6 @@
-<div class="row">
+<div class="row" >
     <div class="col-xs-12">
         <img [src]="recipe.imagePath" alt="{{recipe.name}}" class="img-responsive" style="max-height: 300px;">
-        
     </div>
 
     <div class="row">
@@ -16,14 +15,24 @@
                 <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a  (click)="onAddToShoppingList()" style="cursor:pointer;">to Shopping list</a></li>
-                    <li><a href="#">Edit Recipe</a></li>
-                    <li><a href="#">Delete Recipe</a></li>
+                    <li><a style="cursor:pointer;" [routerLink]="['edit']">Edit Recipe</a></li>
+                    <!-- this is a relative path, relative to the path we are standing here, which is "/recipes/:id/ " so when we add edit here it will fufill the required link text to go to the edit component, the required link or url path for navigating to the path which is written in the Routes array is
+                         "/recipes/:id/edit" , when doing so we are actually standing in such path : "/recipes/0" angular od the routerLink directive will add edit to it so iw will become: /recipes/:id/edit and it will take the whole path : "/recipes/0/edit" and goes to the Routes array to compare so to know where to direct us, and by comparing the paths and children paths it will replace the id with 0 here then it will take us to the recipe-edit-component  -->
+                    <li><a style="cursor:pointer;">Delete Recipe</a></li>
 
                 </ul>
             </div>
         </div>
     </div>
     
+<!-- 
+    In Angular, the routerLink directive is responsible for generating the appropriate URL based on the provided route configuration and parameters. When you use [routerLink]="['edit']", Angular internally processes the route configuration and replaces the dynamic segment :id with the actual value.
+    In your case, assuming you're currently on the route http://localhost:4200/recipes/0, Angular recognizes that the current route contains the id parameter with the value 0. When you use [routerLink]="['edit']", Angular generates the new URL by replacing the :id segment with the actual value, resulting in the route http://localhost:4200/recipes/0/edit.
+    Angular automatically performs this substitution for you based on the current route and the provided relative path in the routerLink directive. This allows you to define relative paths without explicitly providing all the route parameters.
+    By using [routerLink]="['edit']", Angular takes care of replacing the dynamic segment :id with the appropriate value from the current route, ensuring that the correct URL is generated for navigation. -->
+
+
+
     <div class="row">
         <div class="col-xs-12">
             {{recipe.description}}

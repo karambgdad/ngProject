@@ -1,20 +1,22 @@
 <nav class="navbar navbar-default">
 <div class="container-fluid">
     <div class ="navnar-header">
-        <a href="#" class="navbar-brand">Recipe Book</a>
+        <a  class="navbar-brand" >Recipe Book</a>
     </div>
 
     <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li> <a href="#" (click)="onRecipeClick()">Recipes</a> </li>
-                <li> <a href="#" (click)=" onShopListClick()">Shopping List</a></li>
+                <!-- when clicking on Recipes go to the appRoutes and look in the Routes in path for a matching name "recipes" if founded redirect to the related compnent written in the path  -->
+                <li  routerLinkActive="active"> <a routerLink="/recipes">Recipes</a> </li>
+                <!-- <li class="active"> the routerLinkActive attribute is part of Angular's RouterLink directive, used to add a CSS class to the element when the associated router link is active, We want to conditionally attach to this element. Whenever the link on this element or nested inside of it like it's the case here, gets active.</li> -->
+                <li routerLinkActive="active"> <a routerLink="/shopping-list" >Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" > 
                 <li class="dropdown " appDropdown>
-                    <a href="#" class="dropdown-toggle " role="button"  >Manage <span class="caret"></span></a>
+                    <a style="cursor: pointer;" class="dropdown-toggle " role="button"  >Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu" >
-                        <li> <a href="#">Save Data</a> </li>
-                        <li> <a href="#">Fetch Data</a> </li>
+                        <li> <a style="cursor: pointer;">Save Data</a> </li>
+                        <li> <a style="cursor: pointer;">Fetch Data</a> </li>
                     </ul>
                 </li>
             </ul>

@@ -61,6 +61,10 @@ export class RecipeService{
       getSelectedRecipe():Recipe{
         return this.sselectedRecipe
       }
+
+      getRecipeById (id:number){
+        return this.recipes[id];
+      }
      
 }
 

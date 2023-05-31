@@ -1,5 +1,11 @@
-<a href="#" class="list-group-item clearfix" (click)="onSelect()">
-    <div class="pull-left">
+<a 
+[routerLink]="['/recipes',index]"
+ style="cursor: pointer;" 
+ class="list-group-item clearfix"
+ routerLinkActive="active"
+ >
+ 
+    <div class="pull-left" >
         <h4 class="list-group-item-heading">Recipe Name: {{recipe.name}}</h4>
         <p class="list-group-item-text"> Descripion: {{recipe.description}}</p>
     </div>
@@ -10,3 +16,12 @@
     </span>
 
 </a>
+
+
+
+
+<!-- Very Important! -->
+<!-- <a [routerLink]="['/recipes',index]" style="cursor: pointer;" class="list-group-item clearfix"></a> -->
+<!-- take the index whenever i click on a recipe item then go to the children routes of "path: 'recipes'" in the appRoutes, then replace the index with the ":id" in the children path, and when replaced call the component: "RecipeDetailComponent" , so the link will be after clicking on a recipe item : http://localhost:4200/recipes/0 or
+http://localhost:4200/recipes/1 and on the recipe-details component i can react to this active link -->
+<!-- this here [routerLink]="['/recipes',index]" is equivalent to [routerLink]="[index]"-->
