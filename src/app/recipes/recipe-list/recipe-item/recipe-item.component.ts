@@ -12,7 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RecipeItemComponent implements OnInit{
  
 @Input() index: number
+
 recipe: Recipe;
+
 constructor(private recipeService: RecipeService,
             private route: ActivatedRoute,
             ){}

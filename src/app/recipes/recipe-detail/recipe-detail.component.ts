@@ -20,6 +20,7 @@ export class RecipeDetailComponent implements OnInit {
 
   id: number;
   recipe: Recipe;
+  
   ngOnInit() {
 
 

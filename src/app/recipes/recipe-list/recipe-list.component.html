@@ -11,10 +11,13 @@
 <div class="row">
     <div class="col-xs-12">
         <!-- here I replicate single recipe item multiple times -->
+        <!-- very Important -->
+        <!-- befor it prints anything here, for each element of recipe item it goes through recipes "which it gets from recipe list" takes the index for each element , goes to the recipe item , bind the index i with other variable in the recipe list through @Input() ,after binding we get the recipe from the service through a function depending on recipe ID, after that we go to the html file of the recipe item, it takes the id and bind it to RouterLink, so the :id of the path will get assigned a VALUE, after that it will output the recipe details in the recipe item then it will print the recipe in the reipe-list html file depending on the for loop and the element replication -->
         <app-recipe-item
         *ngFor="let r of recipes; let i = index"
         [index]="i"
-        >    
+        >   
+        <!-- this is just to get the index  -->
     </app-recipe-item>
     </div>
 </div>
