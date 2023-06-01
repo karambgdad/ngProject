@@ -16,7 +16,8 @@ export class RecipesComponent implements OnInit {
 
 ngOnInit() {
 
-  this.recipeService.selectedRecipe.subscribe((newRecipe:Recipe)=> (this.selectedRecipe=newRecipe))
+  //this.recipeService.selectedRecipe.subscribe((newRecipe:Recipe)=> (this.selectedRecipe=newRecipe))
+  //we dont need this subscribe because we are slecting a recipe depending on RouterLink directive, therefore we remove the eventemiiter or the subject from the service file
   
   
   //console.log('from recipe component: ' + this.sRecipe.getSelectedRecipe())
