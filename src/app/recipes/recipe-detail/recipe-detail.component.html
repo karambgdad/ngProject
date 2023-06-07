@@ -18,7 +18,7 @@
                     <li><a style="cursor:pointer;" [routerLink]="['edit']">Edit Recipe</a></li>
                     <!-- this is a relative path, relative to the path we are standing here, which is "/recipes/:id/ " so when we add edit here it will fufill the required link text to go to the edit component, the required link or url path for navigating to the path which is written in the Routes array is
                          "/recipes/:id/edit" , when doing so we are actually standing in such path : "/recipes/0" angular od the routerLink directive will add edit to it so iw will become: /recipes/:id/edit and it will take the whole path : "/recipes/0/edit" and goes to the Routes array to compare so to know where to direct us, and by comparing the paths and children paths it will replace the id with 0 here then it will take us to the recipe-edit-component  -->
-                    <li><a style="cursor:pointer;">Delete Recipe</a></li>
+                    <li><a style="cursor:pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
 
                 </ul>
             </div>

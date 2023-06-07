@@ -1,7 +1,7 @@
 
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 
 export class RecipeService{
   
@@ -39,11 +39,33 @@ export class RecipeService{
     
    private sselectedRecipe : Recipe;
 
-   //selectedRecipe = new Subject <Recipe>();
+   subjectRecipe = new Subject <Recipe[]>
+   
 
       getRecipes(){
-        return this.recipes.slice();
+        return this.recipes.slice()
       }
+
+      getRecipeById (id:number){
+        return this.recipes[id];
+      }
+
+      addNewRecipe(recipe: Recipe){//when we call this function, we push a new element to the array, therefore we want to react to the changes happening in the array, therefore we emit the updated version of the array, this Subject will only get triggered whenever changes happen in the recipes array
+        this.recipes.push(recipe)
+        this.subjectRecipe.next(this.recipes.slice())
+        //there is no need for a "return" here
+      }
+      updateRecipe(id:number, recipe:Recipe){
+        this.recipes[id] = recipe
+        this.subjectRecipe.next(this.recipes.slice())
+      }
+     
+
+      deleteRecipe(id:number){
+          this.recipes.splice(id , 1)
+          this.subjectRecipe.next(this.recipes.slice())
+      }
+
 
       // getRecipe(r:Recipe): Recipe{
       //   return this.recipes.find((recipe:Recipe)=>{recipe===r})
@@ -55,18 +77,15 @@ export class RecipeService{
       // The find() method expects a callback function as its argument. This callback function is executed for each element in the array until a matching element is found or until all elements have been iterated.
       // The arrow function (recipe: Recipe) => recipe === r takes a single parameter recipe and compares it to the provided r using the strict equality operator (===). If the comparison returns true, it means we have found a matching element, and the callback function returns true, which stops the iteration and returns that matching element.
 
-      setSelectedRecipe(recipe:Recipe){
-         this.sselectedRecipe= recipe
-      }
+      // setSelectedRecipe(recipe:Recipe){
+      //    this.sselectedRecipe= recipe
+      // }
 
-      getSelectedRecipe():Recipe{
-        return this.sselectedRecipe
-      }
+      // getSelectedRecipe():Recipe{
+      //   return this.sselectedRecipe
+      // }
 
-      getRecipeById (id:number){
-        return this.recipes[id];
-      }
-     
+  
 }
 
 

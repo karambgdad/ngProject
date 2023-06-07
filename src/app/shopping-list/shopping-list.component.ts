@@ -13,12 +13,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
   private igChangeSub : Subscription
   constructor(private shoppingListService: ShoppingListService){}
-  
+   
 
   ngOnInit() {
       // * this should be written first, because we are pushing the ingredient we got from shopping-edit into the ingredient array in the service, then we are getting that array from the service.
     
-    this.ingredients=this.shoppingListService.getIngredients();
+   this.ingredients=this.shoppingListService.getIngredients();
 
    this.igChangeSub= this.shoppingListService.ingredientChanged
       .subscribe(
@@ -36,7 +36,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
          //this way i am trying to emit the arrray of ingredients from the recipe-detail component to the EventEmitter in the shopping list service which is pf type Ingredient[], and then listen to it here, i mean subscribe to it and then push it as a spread operator to the original array in the shoppin list service, it is not working 
     //this.shoppingListService.ingredientChanged.subscribe((ingredients: Ingredient[])=>(this.ingredients.push(...ingredients)))
 
-    // his.shoppingListService.ingredientChanged.subscribe((ingredients: Ingredient[])=>(this.ingredients.push(ingredients[])))
+    // this.shoppingListService.ingredientChanged.subscribe((ingredients: Ingredient[])=>(this.ingredients.push(ingredients[])))
     // The error in your code is caused by incorrect syntax when pushing elements to the ingredients array. The correct syntax should be this.ingredients.push(...ingredients) instead of this.ingredients.push(ingredients[]).
     // Here's the corrected code:
     // this.shoppingListService.ingredientChanged.subscribe((ingredients: Ingredient[]) => {
@@ -46,9 +46,18 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     
   }
 
+
+  onIngClick(i: number){
+
+    this.shoppingListService.singleIngredient.next(i)
+    
+  }
+
   ngOnDestroy(){
    this.igChangeSub.unsubscribe();
   }
 
+
+ 
   
 }

@@ -1,1 +1,110 @@
-Dont forget to apply here what we learned in router section, to prevent or send a message to the user if he wants to leave the route without fully filling all of the inputs in the page, and to render/solve a recipe before the router get executed to show in the edit page so  we can edit previously existing recipe
+<!-- Dont forget to apply here what we learned in router section, to prevent or send a message to the user if he wants to leave the route without fully filling all of the inputs in the page, and to render/solve a recipe before the router get executed to show in the edit page so  we can edit previously existing recipe -->
+
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancelRecipe()">Cancel</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input 
+                        type="text"
+                        id="name"
+                        class="form-control"
+                        formControlName="name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="imagePath">Image URL</label>
+                        <input 
+                        type="text"
+                        id="imagePath"
+                        class="form-control"
+                        formControlName="imagePath"
+                        #instantPreview>
+                        <!-- we use elementRef for intsant access because we initialize the values of the form with empty values and this form control name doesnt get its value until the save button has been clicked, so there is no way of previewing the image instantly without using ElementRef -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- <img [src]="recipeForm.get['imagePath']" class="img-responsive"> -->
+                    <img [src]="instantPreview.value" class="img-responsive" style="max-height: 200px;">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea 
+                        type="text"
+                        id="description"
+                        class="form-control"
+                        rows="6"
+                        formControlName="description"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!-- formArrayName Directve which will bound to the control name of the FormArray -->
+                <div class="col-xs-12" formArrayName="ingredients">
+                    <!-- each control of ingredients gonna be our row here, therefore we put an ngFor in the div below, and each row is a FormGroup -->
+                    <!-- as written in the TS file , this is a proof that each control of the array is a FormGroup -->
+                      <div 
+                      class="row" 
+                      *ngFor="let ing of getControls(); let i = index"
+                      [formGroupName]="i"
+                      style="margin-top: 10px;">
+                        <div class="col-xs-8">
+                            <input 
+                            type="text"
+                            class="form-control"
+                            formControlName="name">
+                        </div>
+                        <div class="col-xs-2">
+                            <input 
+                            type="number"
+                            class="form-control"
+                            formControlName="amount">
+                        </div>
+                        <div class="col-xs-2">
+                           <button 
+                           class="btn btn-danger"
+                           type="button"
+                           (click)="onDeleteingredient(i)">X</button>
+                        </div>
+                      </div>
+                      
+                      <hr>
+                      <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-success" 
+                            (click)="onAddIngredient()"
+                            type="button">Add Ingredient</button>
+                        </div> 
+                      </div>
+                </div>
+            </div>
+        
+
+
+
+        </form>
+    </div>
+</div>
