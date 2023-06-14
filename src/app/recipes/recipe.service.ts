@@ -16,27 +16,29 @@ export class RecipeService{
   //                                     tomatoSoupIngredients);
   
 
-  private  recipes: Recipe [] =[
+  // private  recipes: Recipe [] =[
 
-        new Recipe ('Tomato Soup' ,
-                    'A super tasty Tomato Soup - just awesome' ,
-                    'https://cdn.loveandlemons.com/wp-content/uploads/2020/03/pantry-recipes-2-580x697.jpg',
-                    [
-                      new Ingredient ('Tomato',10),
-                      new Ingredient('Onion', 3)
-                    ]
-                    ),
+  //       new Recipe ('Tomato Soup' ,
+  //                   'A super tasty Tomato Soup - just awesome' ,
+  //                   'https://cdn.loveandlemons.com/wp-content/uploads/2020/03/pantry-recipes-2-580x697.jpg',
+  //                   [
+  //                     new Ingredient ('Tomato',10),
+  //                     new Ingredient('Onion', 3)
+  //                   ]
+  //                   ),
     
-        new Recipe ('Falafel' ,
-                    'A delicious Vegan Food' ,
-                    'https://picturetherecipe.com/wp-content/uploads/2018/06/Chicken-Cutlets-by-PictureTheRecipe-Featured-395x500.jpg',
-                    [
-                      new Ingredient ('Chickpea',300),
-                      new Ingredient('Garlic', 2)
-                    ]),
+  //       new Recipe ('Falafel' ,
+  //                   'A delicious Vegan Food' ,
+  //                   'https://picturetherecipe.com/wp-content/uploads/2018/06/Chicken-Cutlets-by-PictureTheRecipe-Featured-395x500.jpg',
+  //                   [
+  //                     new Ingredient ('Chickpea',300),
+  //                     new Ingredient('Garlic', 2)
+  //                   ]),
                      
-      ];
+  //     ];
     
+   private recipes : Recipe[] = [];
+
    private sselectedRecipe : Recipe;
 
    subjectRecipe = new Subject <Recipe[]>
@@ -66,6 +68,10 @@ export class RecipeService{
           this.subjectRecipe.next(this.recipes.slice())
       }
 
+      setRecipes (recipes: Recipe[]){
+          this.recipes = recipes // the important idea here is, since we change the recipes, we should also call subjectRecipe , to emit the changes on the recipes, so we inform all interested places in our app about this changes
+          this.subjectRecipe.next(this.recipes.slice())
+      }
 
       // getRecipe(r:Recipe): Recipe{
       //   return this.recipes.find((recipe:Recipe)=>{recipe===r})

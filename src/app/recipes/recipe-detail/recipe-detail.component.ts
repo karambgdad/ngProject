@@ -20,9 +20,14 @@ export class RecipeDetailComponent implements OnInit {
 
   id: number;
   recipe: Recipe;
-  
+  recipes : Recipe[]
+
   ngOnInit() {
 
+ //in reference to the resolve in app-routing module
+   console.log('////')
+   console.log(this.route.snapshot.data) 
+   console.log('////')
 
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id']
