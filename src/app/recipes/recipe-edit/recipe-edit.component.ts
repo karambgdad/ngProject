@@ -84,7 +84,12 @@ export class RecipeEditComponent implements OnInit {
         }
       }
     }
-   
+
+
+   //By declaring recipeForm: FormGroup;, you inform TypeScript that the recipeForm variable is of type FormGroup, which allows you to access the properties and methods of the FormGroup class and perform operations related to form handling.
+   //Without the declaration, TypeScript would not recognize recipeForm as a valid variable and may throw a compilation error if you try to use it in your component.
+   // In the code snippet new FormGroup({...}), the form controls are added to the FormGroup using the constructor of the FormControl class.
+   //in case we write this: this.recipeForm = new FormGroup({}) this is an empty Form, with no form controls initially.
     this.recipeForm = new FormGroup({
       //if we are not in edit mode "not editing an existing recipe, therfore the condition will be false, therefore the variables,recipeName,recipeImgPath,recipeDescription will ner empty, therefore we have an empty form, ready for a new recipe to be added "
       name: new FormControl(recipeName, Validators.required),
