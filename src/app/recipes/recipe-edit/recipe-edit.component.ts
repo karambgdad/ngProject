@@ -84,7 +84,7 @@ export class RecipeEditComponent implements OnInit {
         }
       }
     }
-
+   
     this.recipeForm = new FormGroup({
       //if we are not in edit mode "not editing an existing recipe, therfore the condition will be false, therefore the variables,recipeName,recipeImgPath,recipeDescription will ner empty, therefore we have an empty form, ready for a new recipe to be added "
       name: new FormControl(recipeName, Validators.required),
