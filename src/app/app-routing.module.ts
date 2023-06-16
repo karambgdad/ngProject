@@ -10,6 +10,7 @@ import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component
 import { RecipeResolverService } from "./recipes/recipes-resolver.service";
 import { DataStorageService } from "./shared/data-storage.service";
 import { RecipesResolver } from "./recipes/recipes-resolver2.service";
+import { AuthComponent } from "./auth/auth.component";
 
 
 // const appRoutes: Routes = [
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
         {path: ':id', component:RecipeDetailComponent , resolve: {data: RecipesResolver}}, 
         {path: ':id/edit', component: RecipeEditComponent, resolve: {data : RecipesResolver}},
     ]},
-    {path: 'shopping-list', component: ShoppingListComponent}
+    {path: 'shopping-list', component: ShoppingListComponent},
+    {path:'auth', component:AuthComponent}
   ]
 
         
