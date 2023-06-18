@@ -24,7 +24,7 @@ export class DataStorageService  {
 
 //so there is no need for a subject to keep emitting user data, rather, whe we subscribe to this behaviorSubject we get the logged in user data/token
 
-//Now we don't need to change anything in the auth service. We still emit our user as we do before, when signUp or signIn,But in our data storage service, now we can reach out to the auth service user "the behaviorSubject", get the currently active user and be done with that.And that's just what I wanna do here, for example, when we fetch recipes.
+//Now we don't need to change anything in the auth service. We still emit our user as we do before, when signUp or signIn,But in our data storage service, now we can reach out to the auth service user "the behaviorSubject", get the currently active user and be done with that.And that's just what I wanna do here, for example, when we fetch recipes.   
 
     storeRecipes(){
         const recipes = this.recipeService.getRecipes();
