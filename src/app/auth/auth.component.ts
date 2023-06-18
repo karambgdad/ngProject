@@ -5,8 +5,6 @@ import { Observable } from "rxjs";
 import { Router } from "@angular/router";
 
 
-//now we need forwarding the user to a different route once the user is logged in. Now since we always want to redirect the user once we authenticate it, we of course can do this in two different places. We can either do it in the service and handle authentication or we do it in the component here, in the subscribe in the success case only Of course.
-
 @Component({
   selector: "app-auth",
   templateUrl: "./auth.component.html",
