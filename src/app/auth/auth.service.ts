@@ -130,6 +130,29 @@ export class AuthService {
       
     }
 
+/*
+
+In the User model, the property private _tokenExpDate: Date is declared as a private property of type Date. This means that the _tokenExpDate property can only be accessed within the User class itself and not from outside the class.
+In the autoLogin() function, when creating an instance of the User class, the correct property name to use is _tokenExpDate because that is the actual private property declared in the class. The value from userData._tokenExpDate should be assigned to _tokenExpDate in the User instance.
+By using the correct property name, the User instance is properly initialized with the provided _tokenExpDate, ensuring that the private _tokenExpDate property of the User class holds the correct value.
+
+I apologize for the confusion caused by the incorrect information initially provided. The corrected code accurately utilizes the private property _tokenExpDate within the User class, resulting in the expected behavior.
+
+-------------------------------------------------------------------
+
+so because it is private property i should use a matched name?
+
+Apologies for any confusion caused. No, the reason for using the correct property name (_tokenExpDate) in the autoLogin() function is not directly related to the private access modifier. It is actually about using the correct name that matches the property declared in the User class.
+In the User class, you have a private property declared as private _tokenExpDate: Date. This private property is not directly accessible from outside the class. However, within the User class, you can access and use it.
+When you create an instance of the User class, you need to provide values for its properties, including the private _tokenExpDate property. Therefore, you should use the correct property name (_tokenExpDate) when passing the value in the constructor, irrespective of whether it is private or not.
+To summarize, using the correct property name (_tokenExpDate) in the autoLogin() function is important because it matches the property declared in the User class and ensures that the value is correctly assigned to the private _tokenExpDate property of the User instance. 
+//it is always key:value, the key should match so the value get assigned correctly
+The private access modifier itself does not mandate using a matched name; it simply restricts direct access to the property from outside the class.
+
+
+*/
+
+
 
     autoLogout(expirationDuration: number){
 
