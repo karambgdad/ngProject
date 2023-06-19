@@ -11,6 +11,7 @@ import { RecipeResolverService } from "./recipes/recipes-resolver.service";
 import { DataStorageService } from "./shared/data-storage.service";
 import { RecipesResolver } from "./recipes/recipes-resolver2.service";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 
 // const appRoutes: Routes = [
@@ -29,7 +30,7 @@ import { AuthComponent } from "./auth/auth.component";
     
 const appRoutes: Routes = [
     {path: '', redirectTo: '/recipes', pathMatch : 'full'},
-    {path: 'recipes', component: RecipesComponent, children: [
+    {path: 'recipes', component: RecipesComponent, canActivate:[AuthGuard] , children: [
         {path: '', component:RecipeStartComponent},
         {path: 'new', component: RecipeEditComponent},
         {path: ':id', component:RecipeDetailComponent , resolve: {data: RecipesResolver}}, 
