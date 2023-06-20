@@ -71,4 +71,12 @@ export class AuthComponent implements OnInit {
     this.authForm.reset();
     
   }
+
+  onHandleError(){
+    this.error = null;
+
+   // And by doing that, the condition for displaying the error will be removed because we're using error here in *ngIf in the alert component
+   // <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+   //And if that is nullthen this whole alert will not be shown anymore (ngIf will not render the alert component in the DOM) and therefore this will then close the alert.
+  }
 }

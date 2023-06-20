@@ -1,0 +1,12 @@
+<div class="backdrop" (click)="onClose()"></div>
+<!-- that thing in the background that blocks access to the rest of the page and ensures that the focus is on the alert box. -->
+<!-- And that box is the second div I'll add here, I'll give that a class of "alert box", something like this to not interfere with the alert class provided by bootstrap because I don't wanna use that. -->
+<div class="alert-box">
+    <p>{{message}}</p>
+
+    <div class="alert-box-actions">
+        <!-- "alert-box-actions" not a bootstrap class -->
+        <button class="btn btn-primary" (click)="onClose()">Close</button>
+    </div>
+
+</div>
