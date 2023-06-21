@@ -1,29 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
-import{HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
+import{ HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { DropdownEasierDirective } from './shared/dropdown-easier.directive';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
+
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipeService } from './recipes/recipe.service';
 import { AuthComponent } from './auth/auth.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { AuthIntceptorService } from './auth/auth-interceptor.service';
-import { AlertComponent } from './shared/alert/alert.component';
-import { PlaceHolderDirective } from './shared/placeholder/placeholder.directive';
+import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingModule } from './shopping-list/shopping.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -33,35 +22,29 @@ import { PlaceHolderDirective } from './shared/placeholder/placeholder.directive
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    DropdownEasierDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent,
-    PlaceHolderDirective
+    
+   
+    
     
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    
-    AppRoutingModule
+  //FormsModule,//this is still required because the AuthComponent needs it, but we can drop the FormsModule, and the AuthComponent from   declarations array after creating a new feature module for Auth Feature.
+   
+    //ReactiveFormsModule,
+
+    HttpClientModule,//We need the HTTP client module because turns out that this is a module that only sets up some global services, the injectable HTTP service, and we need that, so we will keep that.
+
+    ShoppingModule,
+    RecipesModule,
+    AppRoutingModule,
+
+    CoreModule,//we have to import our CoreModule, even though it's not exporting anything, but to still include it here into our build process.
+
+    SharedModule,// we also import it here, because we need access to the drop down directive we are using in the header component
+    AuthModule
     
   ],
-  providers: [ShoppingListService,
-              RecipeService,
-              {provide: HTTP_INTERCEPTORS, useClass: AuthIntceptorService, multi: true }
-    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

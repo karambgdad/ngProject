@@ -1,18 +1,8 @@
 import { NgModule, inject } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AppComponent } from "./app.component";
-import { RecipesComponent } from "./recipes/recipes.component";
-import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
-import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
-import { RecipeListComponent } from "./recipes/recipe-list/recipe-list.component";
-import { RecipeStartComponent } from "./recipes/recipe-start/recipe-start.component";
-import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
-import { RecipeResolverService } from "./recipes/recipes-resolver.service";
-import { DataStorageService } from "./shared/data-storage.service";
-import { RecipesResolver } from "./recipes/recipes-resolver2.service";
+
 import { AuthComponent } from "./auth/auth.component";
-import { AuthGuard } from "./auth/auth.guard";
-import { authGuardFn } from "./auth/auth2.guard";
+
 
 
 // const appRoutes: Routes = [
@@ -30,15 +20,9 @@ import { authGuardFn } from "./auth/auth2.guard";
 
     
 const appRoutes: Routes = [
-    {path: '', redirectTo: '/recipes', pathMatch : 'full'},
-    {path: 'recipes', component: RecipesComponent, canActivate:[authGuardFn] , children: [
-        {path: '', component:RecipeStartComponent},
-        {path: 'new', component: RecipeEditComponent},
-        {path: ':id', component:RecipeDetailComponent , resolve: {data: RecipesResolver}}, 
-        {path: ':id/edit', component: RecipeEditComponent, resolve: {data : RecipesResolver}},
-    ]},
-    {path: 'shopping-list', component: ShoppingListComponent},
-    {path:'auth', component:AuthComponent}
+    {path: '', redirectTo: '/recipes', pathMatch : 'full'},//we didnt define a path that leads to component here, we only redirect the route, therefore we can delete all of the recipes components from imports above, and therfore we can import this AppRoutingModule in the app.module, without having RecipeComponent to be inthe declaration array.
+    
+    {path:'auth', component: AuthComponent}
   ]
 
         
@@ -48,7 +32,9 @@ const appRoutes: Routes = [
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
+
+
+export class AppRoutingModule {//here the name of the module is AppRoutingModule, but we alredy above has exported the RouterModule, which in order holds the appRoutes array/Routes
 
 
 
