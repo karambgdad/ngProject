@@ -1,5 +1,5 @@
 import { NgModule, inject } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 import { AuthComponent } from "./auth/auth.component";
 
@@ -55,8 +55,18 @@ const appRoutes: Routes = [
 @NgModule({
 
   //Right now we load code whenever we need it. So as soon as we visit /recipes, for example after logging in, we bring in the recipes module. Now the downside of that of course, is that this is downloaded in parts just when we need it leading to a very tiny delay in our application.
+  //And therefore we can actually tell angular to preload lazy loaded modules to avoid this delay.
   
-  imports: [RouterModule.forRoot(appRoutes)],
+  //For this we simply go to our root router module. So here where we configure our root routes and you can pass a second argument to that.This is an object where you can configure that root route
+
+  imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
+  //you're telling angler, generally we're using lazy loading so it will not put all the code into one bundle. It will split it as we saw it, but it will preload the bundles as soon as possible. So when we are on the auth page, it will already preload recipes and shopping list, so that these code bundles are already available when we need them. The advantage is that the initial download bundle still is kept small because there that code is not included and therefore the initial loading phase is fast.
+
+  //But then when the user is browsing the page and therefore has we have some idle time anyways, then we preload these additional code bundles to make sure that subsequent navigation requests are faster.
+
+  //So we're getting the best of both worlds a fast initial load and thereafter fast subsequent loads.
+
+
   exports: [RouterModule]
 })
 
